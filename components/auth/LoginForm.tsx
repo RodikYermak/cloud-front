@@ -1,10 +1,29 @@
 import React from 'react';
 import styles from './Auth.module.scss';
-import { Button, Form, Input } from 'antd';
+import { Button, Form, Input, notification } from 'antd';
+import { LoginFormDTO } from '@/api/dto/auth.dto';
+
+import { setCookie } from 'nookies';
+
+import * as Api from '@/api';
 
 export const LoginForm: React.FC = () => {
-    const onSubmit = (values: any) => {
-        console.log(values);
+    const onSubmit = async (values: LoginFormDTO) => {
+        try {
+            const { token } = await Api.auth.login(values);
+
+            notification.success({
+                message: 'Успешно',
+                description: 'Переходим в админ панель...',
+                duration: 2,
+            });
+
+            setCookie(null, '_token', token, {
+                path: '/',
+            });
+        } catch (err) {
+            console.warn('LoginForm', err);
+        }
     };
     return (
         <div className={styles.formBlock}>
