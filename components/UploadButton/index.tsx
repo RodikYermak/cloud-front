@@ -12,6 +12,8 @@ export const UploadButton: React.FC = () => {
             const file = await Api.files.uploadFile(options);
 
             setFileList([]);
+
+            window.location.reload();
         } catch (e) {
             notification.error({
                 message: 'Ошибка',

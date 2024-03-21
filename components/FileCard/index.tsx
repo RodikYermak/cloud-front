@@ -6,7 +6,7 @@ import { Extension, getColorByExtension } from '../../utils/getColorByExtension'
 import { FileTextOutlined } from '@ant-design/icons';
 
 interface FileCardProps {
-    filename: Extension;
+    filename: string;
     originalName: string;
 }
 
@@ -31,4 +31,3 @@ export const FileCard: React.FC<FileCardProps> = ({ originalName, filename }) =>
         </div>
     );
 };
-// 45:02

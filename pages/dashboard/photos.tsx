@@ -20,7 +20,7 @@ const DashboardPage: NextPage<Props> = ({ items }) => {
 };
 
 DashboardPage.getLayout = (page: React.ReactNode) => {
-    return <Layout title="Dashboard / Главная">{page}</Layout>;
+    return <Layout title="Dashboard / Фотография ">{page}</Layout>;
 };
 
 export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
@@ -31,7 +31,7 @@ export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
     }
 
     try {
-        const items = await Api.files.getAll();
+        const items = await Api.files.getAll('photos');
 
         return {
             props: {
